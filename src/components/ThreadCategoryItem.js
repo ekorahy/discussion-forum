@@ -5,7 +5,7 @@ function ThreadCategoryItem({
   category,
 }) {
   return (
-    <p className='inline-block m-1 px-4 py-1 font-Quicksand font-thin border rounded-lg hover:border-primary'>{category}</p>
+    <p className='inline-block m-1 px-4 py-1 font-Quicksand font-thin text-sm border rounded-lg hover:bg-secondary hover:text-white'>{category}</p>
   );
 }
 

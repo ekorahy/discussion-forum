@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import Logo from '../images/logo.png';
+import Logo from '../images/logo2.png';
 import NavMobile from './NavMobile';
 import NavLink from './NavLink';
 
@@ -10,7 +10,7 @@ function AppBar({ authUser, signOut }) {
   const { name, email, avatar } = authUser;
 
   return (
-    <div className="flex justify-between items-center px-2 border-b md:container md:p-4">
+    <div className="bg-white flex justify-between items-center px-2 border-b md:container md:p-4">
       <div className="flex justify-start items-center">
         <NavMobile
           open={open}
@@ -27,7 +27,6 @@ function AppBar({ authUser, signOut }) {
           </Link>
         </div>
         <div className='hidden md:block'>
-          <NavLink to="/" desc='Home' />
           <NavLink to="/" desc='Threads' />
           <NavLink to="/" desc='Leaderboards' />
         </div>
@@ -46,7 +45,7 @@ function AppBar({ authUser, signOut }) {
       </button>
       <div className='hidden md:block'>
         <button className="flex justify-center content-center" type="button" onClick={signOut}>
-          <img src={avatar} alt={name} className="h-10 w-10 rounded-full mr-2" />
+          <img src={avatar} alt={name} className="h-8 w-8 rounded-full mr-2" />
         </button>
       </div>
     </div>

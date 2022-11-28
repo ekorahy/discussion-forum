@@ -128,9 +128,32 @@ const api = (() => {
       throw new Error(message);
     }
 
-    const { data: { threadDetail } } = responseJson;
+    const { data: { detailThread } } = responseJson;
 
-    return threadDetail;
+    return detailThread;
+  }
+
+  async function createComment({ id, content }) {
+    const response = await fetch(`${BASE_URL}/thread/${id}/comments`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        content,
+      }),
+    });
+
+    const responseJson = await response.json();
+
+    const { status, message } = responseJson;
+
+    if (status !== 'success') {
+      throw new Error(message);
+    }
+
+    const { data: { comment } } = responseJson;
+    return comment;
   }
 
   async function createThread({ title, category, body }) {
@@ -168,6 +191,7 @@ const api = (() => {
     getAllUser,
     getAllThreads,
     createThread,
+    createComment,
     getThreadDetail,
   };
 })();

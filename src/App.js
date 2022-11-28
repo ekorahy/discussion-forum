@@ -7,7 +7,7 @@ import HomePage from './pages/HomePage';
 import { asyncPreloadProcess } from './states/isPreload/action';
 import { asyncUnsetUser } from './states/authUser/action';
 import AppBar from './components/AppBar';
-import Hero from './components/Hero';
+import DetailPage from './pages/DetailPage';
 
 function App() {
   const {
@@ -42,13 +42,13 @@ function App() {
 
   return (
     <>
-      <header className='sticky top-0 bg-white'>
+      <header className='sticky top-0 bg-white z-10'>
         <AppBar authUser={authUser} signOut={onSignOut} />
       </header>
-      <main className=''>
-        <Hero />
+      <main className='bg-slate-50'>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/threads/:id" element={<DetailPage />} />
         </Routes>
       </main>
     </>
