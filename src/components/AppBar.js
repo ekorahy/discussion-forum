@@ -29,7 +29,7 @@ function AppBar({ authUser, signOut }) {
         </div>
         <div className='hidden md:block'>
           <NavLink to="/" desc='Threads' />
-          <NavLink to="/" desc='Leaderboards' />
+          <NavLink to="/leaderboards" desc='Leaderboards' />
         </div>
       </div>
       <button

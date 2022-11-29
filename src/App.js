@@ -8,6 +8,7 @@ import { asyncPreloadProcess } from './states/isPreload/action';
 import { asyncUnsetUser } from './states/authUser/action';
 import AppBar from './components/AppBar';
 import DetailPage from './pages/DetailPage';
+import LeaderboardsPage from './pages/LeaderboardsPage';
 
 function App() {
   const {
@@ -49,6 +50,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/threads/:id" element={<DetailPage />} />
+          <Route path="/leaderboards" element={<LeaderboardsPage />} />
         </Routes>
       </main>
     </>
