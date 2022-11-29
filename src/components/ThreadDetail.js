@@ -23,10 +23,10 @@ function ThreadDetail({
         </div>
       </div>
       <div className='mt-4'>
-        <h2 className='font-semibold font-Quicksand text-lg'>{title}</h2>
-        <p className='font-Quicksand mt-2'>{parse(body)}</p>
+        <h2 className='font-semibold font-Quicksand text-2xl'>{title}</h2>
+        <p className='font-Quicksand mt-1'>{parse(body)}</p>
       </div>
-      <div className='flex justify-start gap-4 mt-4'>
+      <div className='flex justify-start gap-4 mt-2'>
         <p className='flex items-center'>
           <AiOutlineLike className='mr-1 mt-1' />
           {' '}
@@ -36,11 +36,6 @@ function ThreadDetail({
           <AiOutlineDislike className='mr-1 mt-1' />
           {' '}
           {downVotesBy.length}
-        </p>
-        <p className='flex items-center'>
-          <TfiComment className='mr-1 mt-1' />
-          {' '}
-          {comments.length}
         </p>
       </div>
     </section>

@@ -28,13 +28,13 @@ function RegisterPage() {
           </div>
         </div>
         <div className="w-full self-center p-8 md:w-2/5">
-          <h1 className="font-bold text-4xl text-purple-700">Form Register</h1>
-          <p className="mt-2 mb-4">Create your account.</p>
+          <h1 className="font-Philosopher font-bold text-4xl text-primary">Form Register</h1>
+          <p className="font-Quicksand mt-2 mb-4">Create your account.</p>
           <RegisterInput register={onRegister} />
-          <p className='mt-4'>
+          <p className='font-Quicksand mt-4'>
             Already have an account?
             {' '}
-            <Link className='underline text-purple-700 hover:text-purple-500' to="/">Login</Link>
+            <Link className='underline text-link hover:text-linkHover' to="/">Login</Link>
           </p>
         </div>
       </div>

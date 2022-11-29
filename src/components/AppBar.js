@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { AiOutlineDown } from 'react-icons/ai';
 import Logo from '../images/logo2.png';
 import NavMobile from './NavMobile';
 import NavLink from './NavLink';
@@ -44,8 +45,9 @@ function AppBar({ authUser, signOut }) {
         <span className={`h-1 w-full bg-black rounded-lg transform transition duration-300 ease-in-out ${open ? '-rotate-45 -translate-y-2.5' : ''}`} />
       </button>
       <div className='hidden md:block'>
-        <button className="flex justify-center content-center" type="button" onClick={signOut}>
-          <img src={avatar} alt={name} className="h-8 w-8 rounded-full mr-2" />
+        <button className="flex justify-center items-center" type="button" onClick={signOut}>
+          <img src={avatar} alt={name} className="h-8 w-8 rounded-full mr-1" />
+          <AiOutlineDown />
         </button>
       </div>
     </div>

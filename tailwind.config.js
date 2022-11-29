@@ -14,6 +14,8 @@ module.exports = {
         primaryHover: '#475569',
         secondary: '#94a3b8',
         secondaryHover: '#cbd5e1',
+        link: '#7e22ce',
+        linkHover: '#a855f7',
       },
       fontFamily: {
         Philosopher: ['Philosopher', 'sans-serif'],

@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import ThreadDetail from '../components/ThreadDetail';
 import { asyncReceiveThreadDetail } from '../states/threadDetail/action';
 import ThreadCommentInput from '../components/ThreadCommentInput';
-import ThreadCommentDetail from '../components/ThreadCommentDetail';
+import ThreadCommentList from '../components/ThreadCommentList';
 
 function DetailPage() {
   const { id } = useParams();
@@ -27,7 +27,7 @@ function DetailPage() {
       <div className='w-3/4 bg-white mx-auto py-4 px-8'>
         <ThreadDetail {...detailThread} />
         <ThreadCommentInput />
-        <ThreadCommentDetail />
+        <ThreadCommentList {...detailThread} />
       </div>
     </section>
   );
