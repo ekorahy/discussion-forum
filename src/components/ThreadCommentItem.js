@@ -13,8 +13,23 @@ const options = {
 };
 
 function ThreadCommentItem({
-  id, content, createdAt, owner, upVotesBy, downVotesBy,
+  id, content, createdAt, owner, upVotesBy, downVotesBy, like, dislike,
 }) {
+  const isCommentLiked = upVotesBy.includes(id);
+  const isCommentDisliked = downVotesBy.includes(id);
+
+  const onLikeCommentClick = (event) => {
+    event.stopPropagation();
+    dislike(id);
+    like(id);
+  };
+
+  const onDislikeCommentClick = (event) => {
+    event.stopPropagation();
+    like(id);
+    dislike(id);
+  };
+
   return (
     <div className='mt-4'>
       <div className='flex items-center justify-between'>
@@ -28,20 +43,22 @@ function ThreadCommentItem({
         <p className='font-Quicksand text-ellipsis overflow-hidden'>{parse(content, options)}</p>
       </div>
       <div className='flex items-center justify-start gap-3 ml-9 mt-2'>
-        <div className='flex item-center gap-1'>
-          <button type="button">
-            <AiOutlineLike className='mt-1' />
-            {' '}
+        <p className='flex items-center gap-1'>
+          <button type="button" onClick={onLikeCommentClick}>
+            { isCommentLiked ? <AiOutlineLike className=' text-rose-700' />
+              : <AiOutlineLike />}
           </button>
-          <p>{upVotesBy.length}</p>
-        </div>
-        <div className='flex item-center gap-1'>
-          <button type="button">
-            <AiOutlineDislike className='mt-1' />
-            {' '}
+          {' '}
+          {upVotesBy.length}
+        </p>
+        <p className='flex items-center'>
+          <button type="button" onClick={onDislikeCommentClick}>
+            { isCommentDisliked ? <AiOutlineDislike className=' text-rose-700' />
+              : <AiOutlineDislike />}
           </button>
-          <p>{upVotesBy.length}</p>
-        </div>
+          {' '}
+          {downVotesBy.length}
+        </p>
       </div>
     </div>
   );
@@ -65,6 +82,13 @@ const threadCommentItemShape = {
 
 ThreadCommentItem.propTypes = {
   ...threadCommentItemShape,
+  like: PropTypes.func,
+  dislike: PropTypes.func,
+};
+
+ThreadCommentItem.defaultProps = {
+  like: null,
+  dislike: null,
 };
 
 export { threadCommentItemShape };

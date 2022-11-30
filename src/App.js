@@ -9,6 +9,7 @@ import { asyncUnsetUser } from './states/authUser/action';
 import AppBar from './components/AppBar';
 import DetailPage from './pages/DetailPage';
 import LeaderboardsPage from './pages/LeaderboardsPage';
+import CreateDiscussion from './pages/CreateDiscussion';
 
 function App() {
   const {
@@ -46,10 +47,11 @@ function App() {
       <header className='sticky top-0 bg-white z-10'>
         <AppBar authUser={authUser} signOut={onSignOut} />
       </header>
-      <main className='bg-slate-50'>
+      <main className='min-h-screen bg-slate-50'>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/threads/:id" element={<DetailPage />} />
+          <Route path="/create-new-thread" element={<CreateDiscussion />} />
           <Route path="/leaderboards" element={<LeaderboardsPage />} />
         </Routes>
       </main>

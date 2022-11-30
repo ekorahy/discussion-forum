@@ -15,9 +15,32 @@ const options = {
 };
 
 function ThreadItem({
-  id, title, body, category, createdAt, ownerId, upVotesBy, downVotesBy, totalComments,
+  id, title, body, category, createdAt, ownerId, upVotesBy, downVotesBy,
+  totalComments, authUser, like, dislike,
 }) {
   const navigate = useNavigate();
+  const isThreadLiked = upVotesBy.includes(authUser);
+  const isThreadDisliked = downVotesBy.includes(authUser);
+
+  const onLikeClick = (event) => {
+    event.stopPropagation();
+    if (isThreadLiked || isThreadDisliked) {
+      dislike(id);
+      like(id);
+    } else {
+      like(id);
+    }
+  };
+
+  const onDislikeClick = (event) => {
+    event.stopPropagation();
+    if (isThreadLiked || isThreadDisliked) {
+      like(id);
+      dislike(id);
+    } else {
+      dislike(id);
+    }
+  };
 
   const onThreadClick = () => {
     navigate(`/threads/${id}`);
@@ -36,16 +59,22 @@ function ThreadItem({
           <p className='border font-Quicksand inline-block px-4 rounded-md bg-slate-100 font-light'>{`# ${category}`}</p>
           <p className='font-Roboto font-light'>{postedAt(createdAt)}</p>
         </div>
-        <button type="button" className='font-Quicksand font-semibold text-lg mt-2' onClick={onThreadClick} onKeyDown={onThreadPress}>{title}</button>
+        <button type="button" className='font-Quicksand font-semibold text-left text-lg mt-2' onClick={onThreadClick} onKeyDown={onThreadPress}>{title}</button>
         <p className='font-Quicksand font-light'>{parse(body, options)}</p>
         <div className='flex justify-start gap-4 mt-2'>
-          <p className='flex items-center'>
-            <AiOutlineLike className='mr-1 mt-1' />
+          <p className='flex items-center gap-1'>
+            <button type="button" onClick={onLikeClick}>
+              { isThreadLiked ? <AiOutlineLike className=' text-rose-700' />
+                : <AiOutlineLike />}
+            </button>
             {' '}
             {upVotesBy.length}
           </p>
           <p className='flex items-center'>
-            <AiOutlineDislike className='mr-1 mt-1' />
+            <button type="button" onClick={onDislikeClick}>
+              { isThreadDisliked ? <AiOutlineDislike className=' text-rose-700' />
+                : <AiOutlineDislike />}
+            </button>
             {' '}
             {downVotesBy.length}
           </p>
@@ -71,10 +100,18 @@ const threadItemShape = {
   downVotesBy:
   PropTypes.arrayOf(PropTypes.string).isRequired,
   totalComments: PropTypes.number.isRequired,
+  authUser: PropTypes.string.isRequired,
 };
 
 ThreadItem.propTypes = {
   ...threadItemShape,
+  like: PropTypes.func,
+  dislike: PropTypes.func,
+};
+
+ThreadItem.defaultProps = {
+  like: null,
+  dislike: null,
 };
 
 export { threadItemShape };

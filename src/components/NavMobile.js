@@ -17,9 +17,8 @@ function NavMobile({
           </div>
         </div>
         <div className='border-b'>
-          <NavLinkMobile to="/" open={open} setOpen={setOpen} desc="Home" />
           <NavLinkMobile to="/" open={open} setOpen={setOpen} desc="Threads" />
-          <NavLinkMobile to="/" open={open} setOpen={setOpen} desc="Leaderboards" />
+          <NavLinkMobile to="/leaderboards" open={open} setOpen={setOpen} desc="Leaderboards" />
         </div>
         <button className='flex items-center justify-center font-semibold font-Quicksand text-xl p-4 text-red-500 hover:text-secondary' type='button' onClick={signOut}>
           <AiOutlineLogout className='text-2xl mr-1' />
