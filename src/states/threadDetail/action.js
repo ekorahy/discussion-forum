@@ -1,3 +1,4 @@
+import { showLoading, hideLoading } from 'react-redux-loading-bar';
 import api from '../../utils/api';
 
 const ActionType = {
@@ -5,8 +6,8 @@ const ActionType = {
   CLEAR_THREAD_DETAIL: 'CLEAR_THREAD_DETAIL',
   TOGGLE_LIKE_THREAD_DETAIL: 'TOGGLE_LIKE_THREAD_DETAIL',
   TOGGLE_DISLIKE_THREAD_DETAIL: 'TOGGLE_DISLIKE_THREAD_DETAIL',
-  TOGGLE_LIKE_COMMENT_THREAD_DETAIL: 'TOGGLE_LIKE_COMMENT_THREAD_DETAIL',
-  TOGGLE_DISLIKE_COMMENT_THREAD_DETAIL: 'TOGGLE_DISLIKE_COMMENT_THREAD_DETAIL',
+  TOGGLE_NEUTRAL_LIKE_THREAD_DETAIL: 'TOGGLE_NEUTRAL_LIKE_THREAD_DETAIL',
+  TOGGLE_NEUTRAL_DISLIKE_THREAD_DETAIL: 'TOGGLE_NEUTRAL_DISLIKE_THREAD_DETAIL',
 };
 
 function receiveThreadDetailActionCreator(detailThread) {
@@ -50,40 +51,43 @@ function toggleDislikeThreadDetailActionCreator({
   };
 }
 
-function toggleLikeCommentThreadDetailActionCreator({
+function toggleNeutralLikeThreadDetailActionCreator({
   threadId,
-  commentId,
+  userId,
 }) {
   return {
-    type: ActionType.TOGGLE_LIKE_COMMENT_THREAD_DETAIL,
+    type: ActionType.TOGGLE_NEUTRAL_LIKE_THREAD_DETAIL,
     payload: {
       threadId,
-      commentId,
+      userId,
     },
   };
 }
 
-function toggleDislikeCommentThreadDetailActionCreator({
+function toggleNeutralDislikeThreadDetailActionCreator({
   threadId,
-  commentId,
+  userId,
 }) {
   return {
-    type: ActionType.TOGGLE_DISLIKE_COMMENT_THREAD_DETAIL,
+    type: ActionType.TOGGLE_NEUTRAL_DISLIKE_THREAD_DETAIL,
     payload: {
       threadId,
-      commentId,
+      userId,
     },
   };
 }
 
 function asyncReceiveThreadDetail(threadId) {
   return async (dispatch) => {
+    dispatch(showLoading());
     try {
       const detailThread = await api.getThreadDetail(threadId);
       dispatch(receiveThreadDetailActionCreator(detailThread));
     } catch (error) {
       alert(error.message);
     }
+
+    dispatch(hideLoading());
   };
 }
 
@@ -115,42 +119,30 @@ function asyncToggleDislikeThreadDetail(threadId) {
   };
 }
 
-function asyncToggleLikeCommentThreadDetail(threadId) {
+function asyncToggleThreadNeutralLikeThreadDetail(threadId) {
   return async (dispatch, getState) => {
-    const { detailThread } = getState();
-    dispatch(toggleLikeCommentThreadDetailActionCreator({
-      threadId,
-      commentId: detailThread.comments.id,
-    }));
+    const { authUser } = getState();
+    dispatch(toggleNeutralLikeThreadDetailActionCreator({ threadId, userId: authUser.id }));
 
     try {
-      await api.toggleUpVoteCommentThread(threadId, detailThread.comments.id);
+      await api.toggleNeutralVoteThread(threadId);
     } catch (error) {
       alert(error.message);
-      dispatch(toggleLikeCommentThreadDetailActionCreator({
-        threadId,
-        commentId: detailThread.comments.id,
-      }));
+      dispatch(toggleNeutralLikeThreadDetailActionCreator({ threadId, userId: authUser.id }));
     }
   };
 }
 
-function asyncToggleDislikeCommentThreadDetail(threadId) {
+function asyncToggleThreadNeutralDislikeThreadDetail(threadId) {
   return async (dispatch, getState) => {
-    const { detailThread } = getState();
-    dispatch(toggleDislikeCommentThreadDetailActionCreator({
-      threadId,
-      commentId: detailThread.comments.id,
-    }));
+    const { authUser } = getState();
+    dispatch(toggleNeutralDislikeThreadDetailActionCreator({ threadId, userId: authUser.id }));
 
     try {
-      await api.toggleUpVoteCommentThread(threadId, detailThread.comments.id);
+      await api.toggleNeutralVoteThread(threadId);
     } catch (error) {
       alert(error.message);
-      dispatch(toggleDislikeCommentThreadDetailActionCreator({
-        threadId,
-        commentId: detailThread.comments.id,
-      }));
+      dispatch(toggleNeutralDislikeThreadDetailActionCreator({ threadId, userId: authUser.id }));
     }
   };
 }
@@ -161,11 +153,11 @@ export {
   clearThreadDetailActionCreator,
   toggleLikeThreadDetailActionCreator,
   toggleDislikeThreadDetailActionCreator,
-  toggleLikeCommentThreadDetailActionCreator,
-  toggleDislikeCommentThreadDetailActionCreator,
+  toggleNeutralLikeThreadDetailActionCreator,
+  toggleNeutralDislikeThreadDetailActionCreator,
   asyncReceiveThreadDetail,
   asyncToggleLikeThreadDetail,
   asyncToggleDislikeThreadDetail,
-  asyncToggleLikeCommentThreadDetail,
-  asyncToggleDislikeCommentThreadDetail,
+  asyncToggleThreadNeutralLikeThreadDetail,
+  asyncToggleThreadNeutralDislikeThreadDetail,
 };

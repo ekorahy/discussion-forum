@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ThreadCommentItem, { threadCommentItemShape } from './ThreadCommentItem';
 
 function ThreadCommentList({
-  comments, like, dislike,
+  comments,
 }) {
   return (
     <div className='mt-4'>
@@ -11,7 +11,10 @@ function ThreadCommentList({
       {
         comments.length > 0
           ? comments.map((comment) => (
-            <ThreadCommentItem key={comment.id} {...comment} like={like} dislike={dislike} />
+            <ThreadCommentItem
+              key={comment.id}
+              {...comment}
+            />
           ))
           : <div className='font-Quicksand  text-red-700 text-sm text-center'>- No Comment -</div>
       }
@@ -20,9 +23,7 @@ function ThreadCommentList({
 }
 
 ThreadCommentList.propTypes = {
-  comments: PropTypes.shape(threadCommentItemShape).isRequired,
-  like: PropTypes.func.isRequired,
-  dislike: PropTypes.func.isRequired,
+  comments: PropTypes.arrayOf(PropTypes.shape(threadCommentItemShape)).isRequired,
 };
 
 export default ThreadCommentList;

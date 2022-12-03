@@ -6,18 +6,15 @@ import {
   asyncReceiveThreadDetail,
   asyncToggleLikeThreadDetail,
   asyncToggleDislikeThreadDetail,
-  asyncToggleLikeCommentThreadDetail,
-  asyncToggleDislikeCommentThreadDetail,
+  asyncToggleThreadNeutralLikeThreadDetail,
+  asyncToggleThreadNeutralDislikeThreadDetail,
 } from '../states/threadDetail/action';
-import ThreadCommentInput from '../components/ThreadCommentInput';
-import ThreadCommentList from '../components/ThreadCommentList';
 import { asyncAddComment } from '../states/threads/action';
 
 function DetailPage() {
   const { id } = useParams();
   const {
     detailThread = null,
-    users = [],
     authUser,
   } = useSelector((states) => states);
 
@@ -39,12 +36,12 @@ function DetailPage() {
     dispatch(asyncToggleDislikeThreadDetail(threadId));
   };
 
-  const onLikeCommentThreadDetail = (threadId) => {
-    dispatch(asyncToggleLikeCommentThreadDetail(threadId));
+  const onNeutralLikeThreadDetail = (threadId) => {
+    dispatch(asyncToggleThreadNeutralLikeThreadDetail(threadId));
   };
 
-  const onDislikeCommentThreadDetail = (threadId) => {
-    dispatch(asyncToggleDislikeCommentThreadDetail(threadId));
+  const onNeutralDislikeThreadDetail = (threadId) => {
+    dispatch(asyncToggleThreadNeutralDislikeThreadDetail(threadId));
   };
 
   if (!detailThread) {
@@ -59,12 +56,9 @@ function DetailPage() {
           authUser={authUser.id}
           like={onLikeThreadDetail}
           dislike={onDislikeThreadDetail}
-        />
-        <ThreadCommentInput commentThread={onCommentThread} />
-        <ThreadCommentList
-          {...detailThread}
-          like={onLikeCommentThreadDetail}
-          dislike={onDislikeCommentThreadDetail}
+          neutralLike={onNeutralLikeThreadDetail}
+          neutralDislike={onNeutralDislikeThreadDetail}
+          addCommentThread={onCommentThread}
         />
       </div>
     </section>

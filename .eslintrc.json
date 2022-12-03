@@ -32,6 +32,7 @@
         "jsx-a11y/img-redundant-alt": "off",
         "no-unused-expressions": "off",
         "react/jsx-no-useless-fragment": "off",
-        "consistent-return": "off"
+        "consistent-return": "off",
+        "no-dupe-else-if": "off"
     }
 }

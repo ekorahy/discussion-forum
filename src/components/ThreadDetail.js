@@ -1,33 +1,40 @@
 import React from 'react';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import parse from 'html-react-parser';
 import { AiOutlineLike, AiOutlineDislike } from 'react-icons/ai';
+import ThreadCommentItem, { threadCommentItemShape } from './ThreadCommentItem';
 import { postedAt } from '../utils';
+import ThreadCommentInput from './ThreadCommentInput';
 
 function ThreadDetail({
   id, title, body, category, createdAt, owner, upVotesBy,
-  downVotesBy, comments, authUser, like, dislike,
+  downVotesBy, comments, authUser, like, dislike, neutralLike, neutralDislike,
+  addCommentThread,
 }) {
   const isThreadLiked = upVotesBy.includes(authUser);
   const isThreadDisliked = downVotesBy.includes(authUser);
 
   const onLikeClick = (event) => {
     event.stopPropagation();
-    if (isThreadLiked || isThreadDisliked) {
-      dislike(id);
+    if (!isThreadLiked && !isThreadDisliked) {
       like(id);
-    } else {
+    } else if (isThreadDisliked) {
+      neutralDislike(id);
       like(id);
+    } else if (isThreadLiked) {
+      neutralLike(id);
     }
   };
 
   const onDislikeClick = (event) => {
     event.stopPropagation();
-    if (isThreadLiked || isThreadDisliked) {
-      like(id);
+    if (!isThreadLiked && !isThreadDisliked) {
       dislike(id);
-    } else {
+    } else if (isThreadLiked) {
+      neutralLike(id);
       dislike(id);
+    } else if (isThreadDisliked) {
+      neutralDislike(id);
     }
   };
 
@@ -67,45 +74,56 @@ function ThreadDetail({
           {downVotesBy.length}
         </p>
       </div>
+      <ThreadCommentInput commentThread={addCommentThread} />
+      <div className='mt-4'>
+        <h2 className='font-Quicksand font-bold text-primary text-lg'>{`Comments (${comments.length})`}</h2>
+        {
+        comments.length > 0
+          ? comments.map((comment) => (
+            <ThreadCommentItem
+              key={comment.id}
+              {...comment}
+            />
+          ))
+          : <div className='font-Quicksand  text-red-700 text-sm text-center'>- No Comment -</div>
+      }
+      </div>
     </section>
   );
 }
 
 const userShape = {
-  id: Proptypes.string.isRequired,
-  name: Proptypes.string.isRequired,
-  avatar: Proptypes.string.isRequired,
-};
-
-const commentShape = {
-  id: Proptypes.string.isRequired,
-  content: Proptypes.string.isRequired,
-  createdAt: Proptypes.string.isRequired,
-  owner: Proptypes.shape(userShape).isRequired,
-  upVotesBy: Proptypes.arrayOf(Proptypes.string).isRequired,
-  downVotesBy: Proptypes.arrayOf(Proptypes.string).isRequired,
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  avatar: PropTypes.string.isRequired,
 };
 
 ThreadDetail.propTypes = {
-  id: Proptypes.string.isRequired,
-  title: Proptypes.string.isRequired,
-  body: Proptypes.string.isRequired,
-  category: Proptypes.string.isRequired,
-  createdAt: Proptypes.string.isRequired,
-  owner: Proptypes.shape(userShape).isRequired,
-  upVotesBy: Proptypes.arrayOf(Proptypes.string).isRequired,
-  downVotesBy: Proptypes.arrayOf(Proptypes.string).isRequired,
-  comments: Proptypes.shape(commentShape).isRequired,
-  authUser: Proptypes.string.isRequired,
-  like: Proptypes.func,
-  dislike: Proptypes.func,
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  createdAt: PropTypes.string.isRequired,
+  owner: PropTypes.shape(userShape).isRequired,
+  upVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
+  downVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
+  comments: PropTypes.arrayOf(PropTypes.shape(threadCommentItemShape)).isRequired,
+  authUser: PropTypes.string.isRequired,
+  like: PropTypes.func,
+  dislike: PropTypes.func,
+  neutralLike: PropTypes.func,
+  neutralDislike: PropTypes.func,
+  addCommentThread: PropTypes.func,
 };
 
 ThreadDetail.defaultProps = {
   like: null,
   dislike: null,
+  neutralLike: null,
+  neutralDislike: null,
+  addCommentThread: null,
 };
 
-export { userShape, commentShape };
+export { userShape };
 
 export default ThreadDetail;

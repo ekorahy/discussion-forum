@@ -13,23 +13,8 @@ const options = {
 };
 
 function ThreadCommentItem({
-  id, content, createdAt, owner, upVotesBy, downVotesBy, like, dislike,
+  id, content, createdAt, owner, upVotesBy, downVotesBy,
 }) {
-  const isCommentLiked = upVotesBy.includes(id);
-  const isCommentDisliked = downVotesBy.includes(id);
-
-  const onLikeCommentClick = (event) => {
-    event.stopPropagation();
-    dislike(id);
-    like(id);
-  };
-
-  const onDislikeCommentClick = (event) => {
-    event.stopPropagation();
-    like(id);
-    dislike(id);
-  };
-
   return (
     <div className='mt-4'>
       <div className='flex items-center justify-between'>
@@ -44,17 +29,15 @@ function ThreadCommentItem({
       </div>
       <div className='flex items-center justify-start gap-3 ml-9 mt-2'>
         <p className='flex items-center gap-1'>
-          <button type="button" onClick={onLikeCommentClick}>
-            { isCommentLiked ? <AiOutlineLike className=' text-rose-700' />
-              : <AiOutlineLike />}
+          <button type="button">
+            <AiOutlineLike />
           </button>
           {' '}
           {upVotesBy.length}
         </p>
         <p className='flex items-center'>
-          <button type="button" onClick={onDislikeCommentClick}>
-            { isCommentDisliked ? <AiOutlineDislike className=' text-rose-700' />
-              : <AiOutlineDislike />}
+          <button type="button">
+            <AiOutlineDislike />
           </button>
           {' '}
           {downVotesBy.length}
@@ -82,13 +65,6 @@ const threadCommentItemShape = {
 
 ThreadCommentItem.propTypes = {
   ...threadCommentItemShape,
-  like: PropTypes.func,
-  dislike: PropTypes.func,
-};
-
-ThreadCommentItem.defaultProps = {
-  like: null,
-  dislike: null,
 };
 
 export { threadCommentItemShape };

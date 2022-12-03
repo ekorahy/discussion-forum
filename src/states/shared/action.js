@@ -1,3 +1,4 @@
+import { showLoading, hideLoading } from 'react-redux-loading-bar';
 import api from '../../utils/api';
 import { receiveThreadsActionCreator } from '../threads/action';
 import { receiveUsersActionCreator } from '../users/action';
@@ -5,6 +6,7 @@ import { receiveLeaderboardsActionCreator } from '../leaderboards/action';
 
 function asyncPopulateUsersAndThreads() {
   return async (dispatch) => {
+    dispatch(showLoading());
     try {
       const users = await api.getAllUser();
       const threads = await api.getAllThreads();
@@ -14,11 +16,14 @@ function asyncPopulateUsersAndThreads() {
     } catch (error) {
       alert(error.message);
     }
+
+    dispatch(hideLoading());
   };
 }
 
 function asyncPopulateLeaderboards() {
   return async (dispatch) => {
+    dispatch(showLoading());
     try {
       const leaderboards = await api.getAllLeaderboards();
 
@@ -26,6 +31,8 @@ function asyncPopulateLeaderboards() {
     } catch (error) {
       alert(error.message);
     }
+
+    dispatch(hideLoading());
   };
 }
 

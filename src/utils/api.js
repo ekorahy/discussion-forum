@@ -218,6 +218,7 @@ const api = (() => {
       throw new Error(message);
     }
   }
+
   async function toggleDownVoteThread(id) {
     const response = await _fetchWithAuth(`${BASE_URL}/threads/${id}/down-vote`, {
       method: 'POST',
@@ -238,35 +239,14 @@ const api = (() => {
     }
   }
 
-  async function toggleUpVoteCommentThread(id, commentThreadId) {
-    const response = await _fetchWithAuth(`${BASE_URL}/threads/${id}/comments/${commentThreadId}/up-vote`, {
+  async function toggleNeutralVoteThread(id) {
+    const response = await _fetchWithAuth(`${BASE_URL}/threads/${id}/neutral-vote`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         threadId: id,
-        commentId: commentThreadId,
-      }),
-    });
-
-    const responseJson = await response.json();
-
-    const { status, message } = responseJson;
-
-    if (status !== 'success') {
-      throw new Error(message);
-    }
-  }
-  async function toggleDownVoteCommentThread(id, commentThreadId) {
-    const response = await _fetchWithAuth(`${BASE_URL}/threads/${id}/comments/${commentThreadId}/down-vote`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        threadId: id,
-        commentId: commentThreadId,
       }),
     });
 
@@ -293,8 +273,7 @@ const api = (() => {
     getAllLeaderboards,
     toggleUpVoteThread,
     toggleDownVoteThread,
-    toggleUpVoteCommentThread,
-    toggleDownVoteCommentThread,
+    toggleNeutralVoteThread,
   };
 })();
 

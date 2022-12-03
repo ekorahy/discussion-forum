@@ -47,7 +47,7 @@ function AppBar({ authUser, signOut }) {
       </button>
       <div className='hidden md:block'>
         <button className="flex justify-center items-center" type="button" onClick={signOut}>
-          <img src={avatar} alt={name} className="h-8 w-8 rounded-full mr-1" />
+          <img src={avatar} alt={name} className="h-9 w-9 rounded-full mr-1 p-1 border-2 border-green-300" />
           <AiOutlineDown />
         </button>
       </div>

@@ -10,6 +10,7 @@ import AppBar from './components/AppBar';
 import DetailPage from './pages/DetailPage';
 import LeaderboardsPage from './pages/LeaderboardsPage';
 import CreateDiscussion from './pages/CreateDiscussion';
+import Loading from './components/Loading';
 
 function App() {
   const {
@@ -33,17 +34,21 @@ function App() {
 
   if (authUser === null) {
     return (
-      <main>
-        <Routes>
-          <Route path="/*" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-        </Routes>
-      </main>
+      <>
+        <Loading />
+        <main>
+          <Routes>
+            <Route path="/*" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+          </Routes>
+        </main>
+      </>
     );
   }
 
   return (
     <>
+      <Loading />
       <header className='sticky top-0 bg-white z-10'>
         <AppBar authUser={authUser} signOut={onSignOut} />
       </header>
