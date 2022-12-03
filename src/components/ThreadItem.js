@@ -50,32 +50,31 @@ function ThreadItem({
     navigate(`/threads/${id}`);
   };
 
-  const onThreadPress = (event) => {
-    if (event.key === 'Enter' || event.key === '') {
-      navigate(`/threads/${id}`);
-    }
-  };
-
   return (
-    <div className='px-2'>
+    <div className='px-2 font-Quicksand '>
       <div className='border rounded-lg mt-4 p-4'>
         <div className='flex justify-between'>
-          <p>{user.name}</p>
-          <p className='border font-Quicksand inline-block px-4 rounded-md bg-slate-100 font-light'>{`# ${category}`}</p>
-          <p className='font-Roboto font-light'>{postedAt(createdAt)}</p>
+          <p className='border inline-block px-4 rounded-md bg-slate-100 font-light'>{`# ${category}`}</p>
         </div>
-        <button type="button" className='font-Quicksand font-semibold text-left text-lg mt-2' onClick={onThreadClick} onKeyDown={onThreadPress}>{title}</button>
-        <p className='font-Quicksand font-light text-ellipsis overflow-hidden'>{parse(body, options)}</p>
-        <div className='flex justify-start gap-4 mt-2'>
+        <div className='flex items-center gap-2 mt-4'>
+          <img src={user.avatar} alt={user.name} className="h-10 w-10 rounded-full mr-1" />
+          <div>
+            <h2 className='text-lg font-bold text-primary'>{user.name}</h2>
+            <p className='font-light text-sm md:text-base'>{`Created ${postedAt(createdAt)}`}</p>
+          </div>
+        </div>
+        <button type="button" className='font-Quicksand font-semibold text-left text-xl underline mt-4 text-primary hover:text-purple-700' onClick={onThreadClick}>{title}</button>
+        <p className='font-Quicksand font-light text-ellipsis overflow-hidden mt-2'>{parse(body, options)}</p>
+        <div className='flex justify-start gap-6 mt-4'>
           <p className='flex items-center gap-1'>
             <button type="button" onClick={onLikeClick}>
-              { isThreadLiked ? <AiOutlineLike className=' text-rose-700' />
+              { isThreadLiked ? <AiOutlineLike className=' text-green-500' />
                 : <AiOutlineLike />}
             </button>
             {' '}
             {upVotesBy.length}
           </p>
-          <p className='flex items-center'>
+          <p className='flex items-center gap-1'>
             <button type="button" onClick={onDislikeClick}>
               { isThreadDisliked ? <AiOutlineDislike className=' text-rose-700' />
                 : <AiOutlineDislike />}
@@ -83,7 +82,7 @@ function ThreadItem({
             {' '}
             {downVotesBy.length}
           </p>
-          <p className='flex items-center'>
+          <p className='flex items-center gap-1'>
             <TfiComment className='mr-1 mt-1' />
             {' '}
             {totalComments}

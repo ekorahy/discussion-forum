@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 function LeaderboardItem({ user, score }) {
   return (
-    <div className='flex items-center justify-between text-lg mb-4 mt-2'>
+    <div className='flex items-center justify-between text-lg my-4'>
       <div className='flex items-center gap-2'>
         <img src={user.avatar} alt={`${user.name} image`} className='w-12 h-12 rounded-full' />
         <div>

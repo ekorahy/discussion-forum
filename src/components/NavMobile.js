@@ -7,7 +7,7 @@ function NavMobile({
   open, setOpen, name, email, avatar, signOut,
 }) {
   return (
-    <div className={`absolute top-12 right-8 h-max w-max rounded-lg bg-white transform ${open ? 'visible' : 'hidden'} border`}>
+    <div className={`absolute top-12 right-8 h-max w-max rounded-lg bg-white transform ${open ? 'visible' : 'hidden'} shadow-lg`}>
       <div className='flex flex-col'>
         <div className='flex items-center border-b pt-6 px-6 pb-4 '>
           <img src={avatar} alt={name} className="w-12 h-12 rounded-full mr-2" />
@@ -20,7 +20,7 @@ function NavMobile({
           <NavLinkMobile to="/" open={open} setOpen={setOpen} desc="Threads" />
           <NavLinkMobile to="/leaderboards" open={open} setOpen={setOpen} desc="Leaderboards" />
         </div>
-        <button className='flex items-center justify-center font-semibold font-Quicksand text-xl p-4 text-red-500 hover:text-secondary' type='button' onClick={signOut}>
+        <button className='flex items-center justify-center font-semibold font-Quicksand text-xl p-4 text-red-700 hover:text-red-500' type='button' onClick={signOut}>
           <AiOutlineLogout className='text-2xl mr-1' />
           Sign Out
         </button>

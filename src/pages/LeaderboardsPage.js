@@ -20,8 +20,8 @@ function LeaderboardsPage() {
 
   return (
     <section>
-      <div className='w-3/4 bg-white mx-auto py-4 px-8'>
-        <h1 className='font-Philosopher font-bold text-3xl text-primary'>Active user leaderboard</h1>
+      <div className='w-full bg-white mx-auto py-8 px-8 lg:w-4/5'>
+        <h1 className='font-Philosopher font-bold text-2xl md:text-3xl text-primary'>Active user leaderboard</h1>
         <LeaderboardList leaderboards={leaderboardsList} />
       </div>
     </section>

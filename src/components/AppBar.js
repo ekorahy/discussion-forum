@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { AiOutlineDown } from 'react-icons/ai';
-import Logo from '../images/logo2.png';
+import Logo from '../images/logo.png';
 import NavMobile from './NavMobile';
 import NavLink from './NavLink';
 
@@ -30,7 +29,6 @@ function AppBar({ authUser, signOut }) {
         <div className='hidden md:block'>
           <NavLink to="/" desc='Threads' />
           <NavLink to="/leaderboards" desc='Leaderboards' />
-          <NavLink to="/leaderboards" desc='Users' />
         </div>
       </div>
       <button
@@ -48,7 +46,7 @@ function AppBar({ authUser, signOut }) {
       <div className='hidden md:block'>
         <button className="flex justify-center items-center" type="button" onClick={signOut}>
           <img src={avatar} alt={name} className="h-9 w-9 rounded-full mr-1 p-1 border-2 border-green-300" />
-          <AiOutlineDown />
+          <p className='font-Quicksand font-bold text-red-500 mx-2 py-2 hover:text-red-500'>Sign Out</p>
         </button>
       </div>
     </div>

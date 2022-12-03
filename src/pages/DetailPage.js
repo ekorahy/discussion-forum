@@ -50,7 +50,7 @@ function DetailPage() {
 
   return (
     <section>
-      <div className='w-3/4 bg-white mx-auto py-4 px-8'>
+      <div className='w-full h-full bg-white font-Quicksand mx-auto py-8 px-4 md:w-4/5 md:px-6 lg:px-8'>
         <ThreadDetail
           {...detailThread}
           authUser={authUser.id}

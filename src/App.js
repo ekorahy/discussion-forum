@@ -52,7 +52,7 @@ function App() {
       <header className='sticky top-0 bg-white z-10'>
         <AppBar authUser={authUser} signOut={onSignOut} />
       </header>
-      <main className='min-h-screen bg-slate-50'>
+      <main className='h-full bg-slate-50'>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/threads/:id" element={<DetailPage />} />
@@ -60,6 +60,13 @@ function App() {
           <Route path="/leaderboards" element={<LeaderboardsPage />} />
         </Routes>
       </main>
+      <footer className='bg-primary p-4 z-10'>
+        <p className='font-Philosopher text-center text-white'>
+          <span className='font-Quicksand'>Copyright &#169; 2022</span>
+          {' '}
+          - Disfo Apps
+        </p>
+      </footer>
     </>
   );
 }

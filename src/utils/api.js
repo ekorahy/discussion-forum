@@ -133,7 +133,7 @@ const api = (() => {
     return detailThread;
   }
 
-  async function createComment({ content, commentTo = '' }) {
+  async function createComment({ content, commentTo }) {
     const response = await _fetchWithAuth(`${BASE_URL}/threads/${commentTo}/comments`, {
       method: 'POST',
       headers: {

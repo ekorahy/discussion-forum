@@ -11,7 +11,7 @@ function CreateDiscussion() {
   };
 
   return (
-    <section className='bg-white min-h-screen w-3/5 mx-auto pt-10'>
+    <section className='w-full bg-white min-h-screen mx-auto pt-10 md:w-4/5'>
       <div className='px-4'>
         <h1 className='font-Philosopher font-bold text-2xl text-primary'>Create New Discussion</h1>
         <ThreadInput threadInput={onThreadInput} />

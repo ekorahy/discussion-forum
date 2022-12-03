@@ -104,15 +104,11 @@ function asyncAddThread({ title, body, category }) {
   };
 }
 
-function asyncAddComment({ content, commentTo = '' }) {
+function asyncAddComment({ content, commentTo }) {
   return async (dispatch) => {
     dispatch(showLoading());
-    try {
-      const comment = await api.createComment({ content, commentTo });
-      dispatch(addCommentActionCreator(comment));
-    } catch (error) {
-      alert(error.message);
-    }
+    const comment = await api.createComment({ content, commentTo });
+    dispatch(addCommentActionCreator(comment));
 
     dispatch(hideLoading());
   };
