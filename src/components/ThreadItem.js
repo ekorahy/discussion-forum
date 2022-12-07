@@ -59,30 +59,30 @@ function ThreadItem({
         <div className='flex items-center gap-2 mt-4'>
           <img src={user.avatar} alt={user.name} className="h-10 w-10 rounded-full mr-1" />
           <div>
-            <h2 className='text-lg font-bold text-primary'>{user.name}</h2>
+            <h2 className='text-lg font-bold text-primary text-ellipsis overflow-hidden'>{user.name}</h2>
             <p className='font-light text-sm md:text-base'>{`Created ${postedAt(createdAt)}`}</p>
           </div>
         </div>
-        <button type="button" className='font-Quicksand font-semibold text-left text-xl underline mt-4 text-primary hover:text-purple-700' onClick={onThreadClick}>{title}</button>
+        <button type="button" className='font-Quicksand font-semibold text-left text-xl mt-4 text-primary hover:text-purple-700 hover:underline' onClick={onThreadClick}>{title}</button>
         <p className='font-Quicksand font-light text-ellipsis overflow-hidden mt-2'>{parse(body, options)}</p>
-        <div className='flex justify-start gap-6 mt-4'>
-          <p className='flex items-center gap-1'>
+        <div className='flex justify-start gap-3 mt-4'>
+          <p className='flex items-center gap-1 bg-slate-100 px-3 py-1 rounded-lg'>
             <button type="button" onClick={onLikeClick}>
               { isThreadLiked ? <AiOutlineLike className=' text-green-500' />
                 : <AiOutlineLike />}
             </button>
             {' '}
-            {upVotesBy.length}
+            {isThreadLiked ? <span className='text-green-500'>{upVotesBy.length}</span> : <span>{upVotesBy.length}</span>}
           </p>
-          <p className='flex items-center gap-1'>
+          <p className='flex items-center gap-1 bg-slate-100 px-3 py-1 rounded-lg'>
             <button type="button" onClick={onDislikeClick}>
               { isThreadDisliked ? <AiOutlineDislike className=' text-rose-700' />
                 : <AiOutlineDislike />}
             </button>
             {' '}
-            {downVotesBy.length}
+            {isThreadDisliked ? <span className='text-rose-700'>{downVotesBy.length}</span> : <span>{downVotesBy.length}</span>}
           </p>
-          <p className='flex items-center gap-1'>
+          <p className='flex items-center gap-1 px-3 py-1'>
             <TfiComment className='mr-1 mt-1' />
             {' '}
             {totalComments}

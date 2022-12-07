@@ -107,8 +107,12 @@ function asyncAddThread({ title, body, category }) {
 function asyncAddComment({ content, commentTo }) {
   return async (dispatch) => {
     dispatch(showLoading());
-    const comment = await api.createComment({ content, commentTo });
-    dispatch(addCommentActionCreator(comment));
+    try {
+      const comment = await api.createComment({ content, commentTo });
+      dispatch(addCommentActionCreator(comment));
+    } catch (error) {
+      alert(error.message);
+    }
 
     dispatch(hideLoading());
   };

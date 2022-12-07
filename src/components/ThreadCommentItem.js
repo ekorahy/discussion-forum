@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import parse from 'html-react-parser';
-import { AiOutlineLike, AiOutlineDislike } from 'react-icons/ai';
 import { postedAt } from '../utils';
 
 const options = {
@@ -26,22 +25,6 @@ function ThreadCommentItem({
       </div>
       <div className='ml-8 bg-slate-200 rounded-lg p-2 mt-1'>
         <p className='font-Quicksand text-ellipsis overflow-hidden'>{parse(content, options)}</p>
-      </div>
-      <div className='flex items-center justify-start gap-3 ml-9 mt-2'>
-        <p className='flex items-center gap-1'>
-          <button type="button">
-            <AiOutlineLike />
-          </button>
-          {' '}
-          {upVotesBy.length}
-        </p>
-        <p className='flex items-center'>
-          <button type="button">
-            <AiOutlineDislike />
-          </button>
-          {' '}
-          {downVotesBy.length}
-        </p>
       </div>
     </div>
   );

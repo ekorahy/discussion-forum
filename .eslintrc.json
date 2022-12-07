@@ -33,6 +33,7 @@
         "no-unused-expressions": "off",
         "react/jsx-no-useless-fragment": "off",
         "consistent-return": "off",
-        "no-dupe-else-if": "off"
+        "no-dupe-else-if": "off",
+        "react/no-unknown-property": "off"
     }
 }

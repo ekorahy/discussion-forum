@@ -5,7 +5,7 @@ function ThreadCategoryItem({
   category,
 }) {
   return (
-    <button type="button" className='inline-block m-1 px-4 py-1 font-Quicksand font-thin text-sm border rounded-lg hover:bg-secondary hover:text-white'>{category}</button>
+    <p className='inline-block m-1 px-4 py-1 font-Quicksand font-thin text-sm border rounded-lg'>{category}</p>
   );
 }
 
