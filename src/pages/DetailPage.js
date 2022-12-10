@@ -4,12 +4,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import ThreadDetail from '../components/ThreadDetail';
 import {
   asyncReceiveThreadDetail,
+  asyncAddComment,
   asyncToggleLikeThreadDetail,
   asyncToggleDislikeThreadDetail,
   asyncToggleThreadNeutralLikeThreadDetail,
   asyncToggleThreadNeutralDislikeThreadDetail,
 } from '../states/threadDetail/action';
-import { asyncAddComment } from '../states/threads/action';
 
 function DetailPage() {
   const { id } = useParams();

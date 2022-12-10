@@ -1,6 +1,6 @@
 import { ActionType } from './action';
 
-function threadReducer(threads = [], action = {}) {
+function threadsReducer(threads = [], action = {}) {
   switch (action.type) {
     case ActionType.RECEIVE_THREADS:
       return action.payload.threads;
@@ -59,4 +59,4 @@ function threadReducer(threads = [], action = {}) {
   }
 }
 
-export default threadReducer;
+export default threadsReducer;

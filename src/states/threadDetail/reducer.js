@@ -6,6 +6,8 @@ function threadDetailReducer(detailThread = null, action = {}) {
       return action.payload.detailThread;
     case ActionType.CLEAR_THREAD_DETAIL:
       return null;
+    case ActionType.ADD_COMMENT:
+      return [action.payload.comment, ...detailThread.comments];
     case ActionType.TOGGLE_LIKE_THREAD_DETAIL:
       return {
         ...detailThread,

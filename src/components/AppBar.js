@@ -29,8 +29,8 @@ function AppBar({ authUser, signOut }) {
           </Link>
         </div>
         <div className='hidden font-Quicksand font-semibold text-secondary md:block'>
-          <NavLink exact activeClassName="active" className="py-2 mx-3" to="/">Threads</NavLink>
-          <NavLink className="py-2 mx-4" to="/leaderboards">Leaderboards</NavLink>
+          <NavLink exact activeClassName="active" className="py-2 mx-3 hover:text-primary hover:border-b hover:border-primary" to="/">Threads</NavLink>
+          <NavLink className="py-2 mx-4 hover:text-primary hover:border-b hover:border-primary" to="/leaderboards">Leaderboards</NavLink>
         </div>
       </div>
       <button

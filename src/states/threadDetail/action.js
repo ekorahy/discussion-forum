@@ -4,6 +4,7 @@ import api from '../../utils/api';
 const ActionType = {
   RECEIVE_THREAD_DETAIL: 'RECEIVE_THREAD_DETAIL',
   CLEAR_THREAD_DETAIL: 'CLEAR_THREAD_DETAIL',
+  ADD_COMMENT: 'ADD_COMMENT',
   TOGGLE_LIKE_THREAD_DETAIL: 'TOGGLE_LIKE_THREAD_DETAIL',
   TOGGLE_DISLIKE_THREAD_DETAIL: 'TOGGLE_DISLIKE_THREAD_DETAIL',
   TOGGLE_NEUTRAL_LIKE_THREAD_DETAIL: 'TOGGLE_NEUTRAL_LIKE_THREAD_DETAIL',
@@ -22,6 +23,15 @@ function receiveThreadDetailActionCreator(detailThread) {
 function clearThreadDetailActionCreator() {
   return {
     type: ActionType.CLEAR_THREAD_DETAIL,
+  };
+}
+
+function addCommentActionCreator(comment) {
+  return {
+    type: ActionType.ADD_COMMENT,
+    payload: {
+      comment,
+    },
   };
 }
 
@@ -91,6 +101,20 @@ function asyncReceiveThreadDetail(threadId) {
   };
 }
 
+function asyncAddComment({ content, commentTo }) {
+  return async (dispatch) => {
+    dispatch(showLoading());
+    try {
+      const comment = await api.createComment({ content, commentTo });
+      dispatch(addCommentActionCreator(comment));
+    } catch (error) {
+      alert(error.message);
+    }
+
+    dispatch(hideLoading());
+  };
+}
+
 function asyncToggleLikeThreadDetail(threadId) {
   return async (dispatch, getState) => {
     const { authUser } = getState();
@@ -151,11 +175,13 @@ export {
   ActionType,
   receiveThreadDetailActionCreator,
   clearThreadDetailActionCreator,
+  addCommentActionCreator,
   toggleLikeThreadDetailActionCreator,
   toggleDislikeThreadDetailActionCreator,
   toggleNeutralLikeThreadDetailActionCreator,
   toggleNeutralDislikeThreadDetailActionCreator,
   asyncReceiveThreadDetail,
+  asyncAddComment,
   asyncToggleLikeThreadDetail,
   asyncToggleDislikeThreadDetail,
   asyncToggleThreadNeutralLikeThreadDetail,
