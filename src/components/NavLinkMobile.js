@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 function NavLinkMobile({
   to, open, setOpen, desc,
 }) {
-  return <Link to={to} className="block font-Quicksand font-semibold text-xl p-4 my-2 hover:bg-primary hover:text-white" onClick={() => setTimeout(() => { setOpen(!open); }, 100)}>{desc}</Link>;
+  return <Link to={to} className="block font-Quicksand font-semibold p-4 my-2 hover:bg-primary hover:text-white" onClick={() => setTimeout(() => { setOpen(!open); }, 100)}>{desc}</Link>;
 }
 
 NavLinkMobile.propTypes = {

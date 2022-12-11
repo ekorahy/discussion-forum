@@ -56,22 +56,22 @@ function ThreadDetail({
         <h2 className='font-semibold text-primary text-2xl'>{title}</h2>
         <p className='text-ellipsis overflow-hidden mt-3'>{parse(body)}</p>
       </div>
-      <div className='flex justify-start gap-6 mt-4'>
-        <p className='flex items-center gap-1'>
+      <div className='flex justify-start gap-4 mt-4'>
+        <p className='flex items-center gap-1 bg-slate-100 px-3 py-1 rounded-lg'>
           <button type="button" onClick={onLikeClick}>
             { isThreadLiked ? <AiOutlineLike className=' text-green-500' />
               : <AiOutlineLike />}
           </button>
           {' '}
-          {upVotesBy.length}
+          {isThreadLiked ? <span className='text-green-500'>{upVotesBy.length}</span> : <span>{upVotesBy.length}</span>}
         </p>
-        <p className='flex items-center gap-1'>
+        <p className='flex items-center gap-1 bg-slate-100 px-3 py-1 rounded-lg'>
           <button type="button" onClick={onDislikeClick}>
             { isThreadDisliked ? <AiOutlineDislike className=' text-rose-700' />
               : <AiOutlineDislike />}
           </button>
           {' '}
-          {downVotesBy.length}
+          {isThreadDisliked ? <span className='text-rose-700'>{downVotesBy.length}</span> : <span>{downVotesBy.length}</span>}
         </p>
       </div>
       <ThreadCommentInput commentThread={addCommentThread} />
