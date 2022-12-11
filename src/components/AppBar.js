@@ -28,10 +28,10 @@ function AppBar({ authUser, signOut }) {
             <h1 className="font-bold font-Philosopher text-xl text-primary sm:text-2xl">Disfo App</h1>
           </Link>
         </div>
-        <div className='hidden font-Quicksand font-semibold text-secondary md:block'>
+        <nav className='hidden font-Quicksand font-semibold text-secondary md:block'>
           <NavLink exact activeClassName="active" className="py-2 mx-3 hover:text-primary hover:border-b hover:border-primary" to="/">Threads</NavLink>
           <NavLink className="py-2 mx-4 hover:text-primary hover:border-b hover:border-primary" to="/leaderboards">Leaderboards</NavLink>
-        </div>
+        </nav>
       </div>
       <button
         type="button"

@@ -2,7 +2,9 @@
     "env": {
         "browser": true,
         "es2021": true,
-        "node": true
+        "node": true,
+        "jest": true,
+        "cypress/globals": true
     },
     "extends": [
         "plugin:react/recommended",
@@ -17,7 +19,8 @@
     },
     "plugins": [
         "react",
-        "react-hooks"
+        "react-hooks",
+        "cypress"
     ],
     "rules": {
         "linebreak-style": "off",
@@ -34,6 +37,7 @@
         "react/jsx-no-useless-fragment": "off",
         "consistent-return": "off",
         "no-dupe-else-if": "off",
-        "react/no-unknown-property": "off"
+        "react/no-unknown-property": "off",
+        "import/no-extraneous-dependencies": "off"
     }
 }
