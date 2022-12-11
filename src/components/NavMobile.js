@@ -12,15 +12,15 @@ function NavMobile({
         <div className='flex items-center border-b border-b-slate-200 pt-6 px-6 pb-4 '>
           <img src={avatar} alt={name} className="w-12 h-12 rounded-full mr-2" />
           <div className='flex-col'>
-            <h1 className='font-Quicksand font-bold text-2xl'>{name}</h1>
-            <p className='font-Quicksand text-lg text-slate-400'>{email}</p>
+            <h1 className='font-Quicksand font-bold'>{name}</h1>
+            <p className='font-Quicksand text-sm text-slate-400'>{email}</p>
           </div>
         </div>
         <div className='border-b border-b-slate-200'>
           <NavLinkMobile to="/" open={open} setOpen={setOpen} desc="Threads" />
           <NavLinkMobile to="/leaderboards" open={open} setOpen={setOpen} desc="Leaderboards" />
         </div>
-        <button className='flex items-center justify-center font-semibold font-Quicksand text-xl p-4 text-red-700 hover:text-red-500' type='button' onClick={signOut}>
+        <button className='flex items-center justify-center font-bold font-Quicksand p-4 text-red-700 hover:text-red-500' type='button' onClick={signOut}>
           <FiLogOut className='text-2xl mr-1' />
           Logout
         </button>

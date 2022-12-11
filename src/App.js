@@ -54,12 +54,14 @@ function App() {
         <AppBar authUser={authUser} signOut={onSignOut} />
       </header>
       <main className='h-full pb-10 bg-slate-50'>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/threads/:id" element={<DetailPage />} />
-          <Route path="/create-new-thread" element={<CreateDiscussion />} />
-          <Route path="/leaderboards" element={<LeaderboardsPage />} />
-        </Routes>
+        <section className='xl:container'>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/threads/:id" element={<DetailPage />} />
+            <Route path="/create-new-thread" element={<CreateDiscussion />} />
+            <Route path="/leaderboards" element={<LeaderboardsPage />} />
+          </Routes>
+        </section>
       </main>
       <Footer />
     </>

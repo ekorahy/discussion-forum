@@ -60,7 +60,7 @@ function HomePage() {
             <Link to="/create-new-thread" className='block font-Quicksand font-bold rounded-sm text-white bg-primary text-center px-2 py-4 hover:bg-primaryHover'>Create New Discussion</Link>
           </div>
           <div className='bg-white overflow-auto lg:sticky lg:top-44 border rounded-sm px-2 py-4'>
-            <h1 className='font-bold font-Quicksand font-lg text-center mb-2'>Popular Category</h1>
+            <h1 className='font-bold font-Quicksand font-lg text-center mb-2'>Popular Thread Category</h1>
             <ThreadCategoryList threads={threadCategoryList} />
           </div>
         </div>
