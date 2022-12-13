@@ -15,7 +15,7 @@ const options = {
 };
 
 function ThreadItem({
-  id, title, body, category, createdAt, ownerId, upVotesBy, downVotesBy,
+  id, title, body, category, createdAt, upVotesBy, downVotesBy,
   totalComments, user, authUser, like, dislike, neutralLike, neutralDislike,
 }) {
   const navigate = useNavigate();
@@ -106,7 +106,6 @@ const threadItemShape = {
   body: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
   createdAt: PropTypes.string.isRequired,
-  ownerId: PropTypes.string.isRequired,
   upVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
   downVotesBy:
   PropTypes.arrayOf(PropTypes.string).isRequired,
