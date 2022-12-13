@@ -38,6 +38,7 @@
         "consistent-return": "off",
         "no-dupe-else-if": "off",
         "react/no-unknown-property": "off",
-        "import/no-extraneous-dependencies": "off"
+        "import/no-extraneous-dependencies": "off",
+        "react/function-component-definition": "off"
     }
 }

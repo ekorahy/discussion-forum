@@ -50,9 +50,7 @@ function App() {
   return (
     <>
       <Loading />
-      <header className='sticky top-0 bg-white z-10'>
-        <AppBar authUser={authUser} signOut={onSignOut} />
-      </header>
+      <AppBar authUser={authUser} signOut={onSignOut} />
       <main className='h-full pb-10 bg-slate-50'>
         <section className='xl:container'>
           <Routes>
