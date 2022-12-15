@@ -2,6 +2,7 @@
  * - Login spec
  *    - should display login page correctly
  *    - should display alert when email is empty
+ *    - should display alert when email not valid
  *    - should display alert when password is empty
  *    - should display alert when email and password are wrong
  *    - should display homepage when email and password are correct
@@ -25,13 +26,26 @@ describe('Login spec', () => {
 
     // verify window.alert to display message from API
     cy.on('window:alert', (str) => {
-      expect(str).to.equal('"id" is not allowed to be empty');
+      expect(str).to.equal('"email" is not allowed to be empty');
+    });
+  });
+
+  it('should display alert when email not valid', () => {
+    // fill in email
+    cy.get('input[placeholder="Email"]').type('testuser');
+
+    // push login button
+    cy.get('button').contains(/^Login$/).click();
+
+    // verify window.alert to display message from API
+    cy.on('window:alert', (str) => {
+      expect(str).to.equal('"email" must be a valid email');
     });
   });
 
   it('should display alert when password is empty', () => {
     // fill in email
-    cy.get('input[placeholder="Email"]').type('testuser');
+    cy.get('input[placeholder="Email"]').type('testuser@gmail.com');
 
     // click login button without fill in password
     cy.get('button').contains(/^Login$/).click();
@@ -44,7 +58,7 @@ describe('Login spec', () => {
 
   it('should display alert when email and password are wrong', () => {
     // fill in email
-    cy.get('input[placeholder="Email"]').type('testuser');
+    cy.get('input[placeholder="Email"]').type('testuser@gmail.com');
 
     // fill in wrong password
     cy.get('input[placeholder="Password"]').type('wrong password');
@@ -54,7 +68,7 @@ describe('Login spec', () => {
 
     // verify window.alert to display message from API
     cy.on('window:alert', (str) => {
-      expect(str).to.equal('Email or Password is wrong');
+      expect(str).to.equal('email or password is wrong');
     });
   });
 
